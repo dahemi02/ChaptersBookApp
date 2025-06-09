@@ -1,0 +1,128 @@
+<resources>
+    <string name="app_name">ChaptersBookApp</string>
+
+    <string name="chapters">Chapters</string>
+
+    <!--Search Bar-->
+    <string name="search">Search</string>
+    <string name="searchBooks">Search Books</string>
+    <string name="searchAuthors">Search Authors</string>
+
+    <!--Login-->
+    <string name="welcome">Welcome Back</string>
+    <string name="createAccount">Create Account</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="enterEmail">Enter your email</string>
+    <string name="register_link">Don\'t have an account? Register</string>
+    <string name="login_link">Already have an account? Login</string>
+
+    <!--Home Screen-->
+    <string name="home">Home</string>
+    <string name="recommended">Recommended</string>
+    <string name="seeMore">See More</string>
+    <string name="by">By</string>
+
+    <!--Book Details Screen-->
+    <string name="goBack">Go Back</string>
+    <string name="addToFavorites">Add to Favorites</string>
+    <string name="removeFromFavorites">Remove from Favorites</string>
+    <string name="view_BookDetails">View Book Details</string>
+
+    <!--Favorites Screen-->
+    <string name="favorites">Favorites</string>
+    <string name="noFavorites">No Favorites</string>
+    <string name="noFavoritesYet">No Favorite Books Yet</string>
+    <string name="markedFavorites">Books you mark as favorites will appear here</string>
+
+    <!--Authors Screen-->
+    <string name="authors">Authors</string>
+    <string name="popularAuthors">Popular Authors</string>
+    <string name="allAuthors">All Authors</string>
+    <string name="view_AuthorDetails">View Auhtor Details</string>
+
+    <!--Author Details Screen-->
+    <string name="notAvailable">No books available by this author in our collection</string>
+
+    <!--About Screen-->
+    <string name="about">About Us</string>
+    <string name="features">Features</string>
+    <string name="personalFavorites">Personal Favorites</string>
+    <string name="personalFavorites_des">Save and organize your favorite books for easy access</string>
+    <string name="authorProfiles">Author Profiles</string>
+    <string name="authorProfiles_des">Explore detailed author information and their complete works</string>
+    <string name="genreCategories">Genre Categories</string>
+    <string name="genreCategories_des">Browse books by your preferred genres and discover new ones</string>
+    <string name="contactUs">Contact Us</string>
+    <string name="message">Message</string>
+    <string name="sendMessage">Send Message</string>
+
+    <!--Books-->
+    <string name="beachRead">Beach Read</string>
+    <string name="betterThanTheMovies">Better Than the Movies</string>
+    <string name="twistedGames">Twisted Games</string>
+    <string name="silentPatient">The Silent Patient</string>
+    <string name="theHousemaid">The Housemaid</string>
+    <string name="aGGTM">"A Good Girl's Guide to Murder</string>
+    <string name="theTattooistOFAuschwitz">The Tattooist of Auschwitz</string>
+    <string name="theCruelPrince">The Cruel Prince</string>
+    <string name="tILOAL">The Invisible Life of Addie LaRue</string>
+    <string name="theFirstToDie">The First to Die</string>
+    <string name="theDaVinciCode">The Da Vinci Code</string>
+    <string name="theThreeBodyProblem">The Three Body Problem</string>
+    <string name="sixOfCrows">Six of Crows</string>
+    <string name="dune">Dune</string>
+
+    <!--Book Descriptions-->
+    <string name="beachread_des">Beach Read by Emily Henry is a romantic comedy that follows January, a romance writer struggling with writer’s block, and Gus, a literary fiction author. Both facing personal challenges, they swap genres for the summer in a friendly bet to cure their creative slumps. As they spend time together researching and writing, their relationship deepens, blurring the lines between fiction and reality. The novel explores grief, love, and personal growth with humor and heart.</string>
+    <string name="betterTTM_des">Better Than the Movies by Lynn Painter is a charming young adult romance about Liz Buxbaum, a hopeless romantic who dreams of a love story like in the movies. When her childhood crush, Michael, moves back to town, she teams up with her annoying neighbor Wes to win Michael’s heart. But as Liz and Wes spend more time together, she begins to question what a perfect love story really looks like. The novel blends humor, heart, and classic rom-com vibes in a sweet coming-of-age tale.</string>
+    <string name="twistedGames_des">Twisted Games by Ana Huang is a steamy contemporary romance that follows Bridget, a rebellious princess, and Rhys, her fiercely loyal and brooding bodyguard. When Bridget is suddenly thrust into the spotlight as the future queen, her world becomes even more restricted. Despite the rules and their differences, an intense forbidden romance develops between them. The novel blends royal drama, emotional tension, and slow-burn chemistry, exploring themes of duty, sacrifice, and love that defies boundaries.</string>
+    <string name="silentPatient_des">The Silent Patient by Alex Michaelides is a psychological thriller about Alicia Berenson, a famous painter who shoots her husband and then stops speaking entirely. Her silence turns the case into a mystery that grips the public. Theo Faber, a criminal psychotherapist, becomes obsessed with uncovering the truth behind Alicia’s silence and her motives. As he digs deeper into her past, dark secrets unravel, leading to a shocking twist. The novel explores themes of trauma, obsession, and the complexities of the human psyche.</string>
+    <string name="theHousemaid_des">The Housemaid by Freida McFadden is a gripping psychological thriller about Millie, a young woman with a troubled past who takes a live-in job working for the wealthy Winchester family. At first, everything seems perfect—but strange rules, locked doors, and the erratic behavior of Nina Winchester raise red flags. As Millie uncovers dark secrets within the house, she realizes she may be in danger herself. Packed with twists and suspense, the novel explores deception, power, and survival in a seemingly perfect household</string>
+    <string name="aGGTM_des">A Good Girl’s Guide to Murder by Holly Jackson is a young adult mystery thriller following Pip Fitz-Amobi, a high school student who investigates a closed murder case for her senior project. Everyone in town believes Sal Singh killed Andie Bell, but Pip suspects there’s more to the story. As she digs deeper, uncovering secrets and lies, she realizes someone wants the truth to stay buried. With sharp twists and a determined heroine, the novel explores justice, media bias, and the cost of uncovering the truth.</string>
+    <string name="theTattoistOfAuschwitz_des">A real-life story of a Slovakian Jew, Lale Sokolov, who was imprisoned in Auschwitz and became the tattooist there.</string>
+    <string name="theCruelPrince_des">The Cruel Prince by Holly Black is a dark fantasy novel that follows Jude Duarte, a mortal girl living in the treacherous world of Elfhame after her parents are murdered by a faerie general. Determined to prove herself among the powerful and cruel fae, Jude becomes entangled in palace politics and dangerous schemes. Her main rival is Prince Cardan, the arrogant and unpredictable youngest son of the High King. As betrayal and secrets unfold, Jude must navigate a deadly game of power and ambition to survive—and possibly rule.</string>
+    <string name="tILOAL_des">The Invisible Life of Addie LaRue by V.E. Schwab is a lyrical fantasy novel about Adeline “Addie” LaRue, a young woman in 18th-century France who makes a Faustian bargain to live forever—but is cursed to be forgotten by everyone she meets. For centuries, Addie drifts through time, unseen and unremembered, until one day in a New York bookstore, someone remembers her name. Blending romance, art, and identity, the novel explores the desire to leave a mark on the world and the price of true freedom.</string>
+    <string name="theFirstToDie_des">The prequel of the New York Times bestseller Adam Silvera\'s romantasy novel, They Both Die at the End.</string>
+    <string name="theDaVinciCode_des">The Da Vinci Code by Dan Brown is a fast-paced thriller that follows symbologist Robert Langdon and cryptologist Sophie Neveu as they investigate the murder of a Louvre curator. Their search uncovers hidden codes, secret societies, and religious conspiracies tied to the works of Leonardo da Vinci. As they race across Europe, they unravel clues pointing to a shocking secret protected for centuries. Blending art, history, and suspense, the novel explores themes of faith, truth, and the power of knowledge</string>
+    <string name="theThreeBodyProblem_des">The Three-Body Problem by Liu Cixin is a science fiction novel that begins during China’s Cultural Revolution and unfolds into a cosmic tale of first contact. When scientists begin dying under mysterious circumstances, nanotech expert Wang Miao discovers a secret virtual reality game tied to an alien civilization from the star system Trisolaris. As Earth faces the threat of invasion, humanity is forced to confront deep philosophical and scientific questions. The novel explores physics, existential risk, and the clash between civilizations.</string>
+    <string name="sixOfCrows_des">Six of Crows by Leigh Bardugo is a fantasy heist novel set in the gritty, magic-infused world of Ketterdam. It follows criminal mastermind Kaz Brekker and his crew of outcasts—each with unique skills and troubled pasts—as they attempt an impossible mission: break into a heavily guarded fortress and retrieve a powerful prisoner. With high stakes, shifting loyalties, and complex characters, the novel weaves themes of trust, survival, and redemption in a dark, action-packed story.</string>
+    <string name="dune_des">Dune by Frank Herbert is a science fiction epic set in a distant future where noble families vie for control of the desert planet Arrakis, the only source of the valuable spice melange. It follows Paul Atreides, heir to House Atreides, as his family is betrayed and he is thrust into a struggle for survival among the planet’s native Fremen. As Paul rises to power, he grapples with destiny, prophecy, and ecological warfare. The novel explores politics, religion, and human potential on a grand, interstellar scale.</string>
+
+    <!--Authors-->
+    <string name="emilyHenry">Emily Henry</string>
+    <string name="lynnPainter">Lynn Painter</string>
+    <string name="anaHuang">Ana Huang</string>
+    <string name="alexMichaelides">Alex Michaelides</string>
+    <string name="freidaMcFadden">Freida McFadden</string>
+    <string name="hollyJackson">Holly Jackson</string>
+    <string name="heatherMorris">Heather Morris</string>
+    <string name="hollyBlack">Holly Black</string>
+    <string name="vESchwab">V. E. Schwab</string>
+    <string name="adamSilvera">Adam Silvera</string>
+    <string name="aliHazelwood">Ali Hazelwood</string>
+    <string name="danBrown">Dan Brown</string>
+    <string name="cixinLiu">Cixin Liu</string>
+    <string name="leighBardugo">Leigh Bardugo</string>
+    <string name="frankHerbert">Frank Herbert</string>
+
+    <!--Author Description-->
+    <string name="emilyHenry_des">Emily Henry is an American author well-known for her summer rom-com novels</string>
+    <string name="aliHazelwood_des">Ali Hazelwood is a romance novelist and neuroscience professor who became a well-known author</string>
+    <string name="danBrown_des">Dan Brown is an American author best known for his thriller novels</string>
+    <string name="hollyBlack_des">Holly Black is an American writer of fantasy novels</string>
+    <string name="vESchwab_des">V. E. Schwab is a bestselling author of fantasy and science fiction</string>
+    <string name="adamSilvera_des">Adam Silvera is a New York Times bestselling author</string>
+    <string name="heatherMorris_des">Heather Morris is an author known for historical fiction</string>
+    <string name="alexMichaelides_des">Alex Michaelides is a bestselling author of psychological thrillers</string>
+
+    <!--Genre-->
+    <string name="romance">Romance</string>
+    <string name="mystery">Mystery</string>
+    <string name="historicalFiction">Historical Fiction</string>
+    <string name="fantasy">Fantasy</string>
+    <string name="scienceFiction">Science Fiction</string>
+
+</resources>
