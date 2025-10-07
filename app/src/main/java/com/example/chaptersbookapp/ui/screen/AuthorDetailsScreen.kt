@@ -25,11 +25,14 @@ import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -42,19 +45,35 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import coil.compose.rememberAsyncImagePainter
 import com.example.chaptersbookapp.R
+import com.example.chaptersbookapp.ui.data.repository.BookRepository
 import com.example.chaptersbookapp.ui.model.Data
 
 @Composable
 fun AuthorDetailsScreen(
     authorId: Int,
-    navController: NavHostController
+    navController: NavHostController,
+    repository: BookRepository
 ){
     //Get author ID
-    val author = Data.authors.find { it.id == authorId } ?: return
+    val authors by repository.getAllAuthors().collectAsState(initial = emptyList())
+    val author = authors.find { it.id == authorId } ?: return
 
     //Get list of books written by this author
-    val authorBooks = Data.books.filter { it.author == author.name }
+    val allBooks by repository.getAllBooks().collectAsState(initial = emptyList())
+    val authorBooks = allBooks.filter { it.author == author?.name }
+
+    if (author == null) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            CircularProgressIndicator()
+        }
+        return
+    }
 
     //Scrollable
     LazyColumn(
@@ -104,8 +123,8 @@ fun AuthorDetailsScreen(
                             contentAlignment = Alignment.Center
                         ) {
                             Image(
-                                painter = painterResource(id = author.profileImage),
-                                contentDescription = stringResource(id = author.name),
+                                painter = rememberAsyncImagePainter(author.profileImageUrl),
+                                contentDescription = author.name,
                                 contentScale = ContentScale.Crop,
                                 modifier = Modifier
                                     .fillMaxSize()
@@ -121,7 +140,7 @@ fun AuthorDetailsScreen(
 
                     //Author name
                     Text(
-                        text = stringResource(id = author.name),
+                        text = author.name,
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center
@@ -134,7 +153,7 @@ fun AuthorDetailsScreen(
 
                     //Author description
                     Text(
-                        text = stringResource(id = author.description),
+                        text = author.description,
                         style = MaterialTheme.typography.bodyLarge,
                         textAlign = TextAlign.Center,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
@@ -152,12 +171,13 @@ fun AuthorDetailsScreen(
             )
         }
 
+        //If there are books by this author
         if (authorBooks.isNotEmpty()){
             items(authorBooks) { book ->
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable{navController.navigate("book_detail/${book.id}")},
+                        .clickable{navController.navigate("book_detail/${book.id}")},  //Navigate Book Details Screen
                     colors = CardDefaults.cardColors(
                         containerColor = MaterialTheme.colorScheme.surface
                     )
@@ -169,7 +189,7 @@ fun AuthorDetailsScreen(
                     ) {
                         //Book Cover
                         Card(
-                            modifier = Modifier.size(60.dp),
+                            modifier = Modifier.size(60.dp, 80.dp),
                             colors = CardDefaults.cardColors(
                                 containerColor = MaterialTheme.colorScheme.secondary.copy(alpha = 0.3f)
                             )
@@ -180,7 +200,7 @@ fun AuthorDetailsScreen(
                                 contentAlignment = Alignment.Center
                             ) {
                                 Image(
-                                    painter = painterResource(id = book.coverImage),
+                                    painter = rememberAsyncImagePainter(book.coverImageUrl),
                                     contentDescription = "Book Cover",
                                     modifier = Modifier
                                         .fillMaxWidth()
@@ -200,19 +220,19 @@ fun AuthorDetailsScreen(
 
                             //Book title
                             Text(
-                                text = stringResource(book.title),
+                                text = book.title,
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold
                             )
                             //Book category
                             Text(
-                                text = stringResource(book.category),
+                                text = book.category,
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.primary
                             )
                             //Book description
                             Text(
-                                text = stringResource(book.description),
+                                text = book.description,
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                                 maxLines = 2,

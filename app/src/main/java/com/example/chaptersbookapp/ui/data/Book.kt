@@ -8,5 +8,6 @@ data class Book(
     val author: Int,
     val description: Int,
     val category: Int,
-    val coverImage: Int
+    val coverImage: Int,
+    val isFavorite: Boolean = false
 )

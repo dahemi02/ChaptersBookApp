@@ -1,0 +1,38 @@
+{
+
+  "books": [
+    {
+      "id": 1,
+      "title": "Beach Read",
+      "author": "Emily Henry",
+      "description": "Beach Read by Emily Henry is a romantic comedy that follows January, a romance writer struggling with writer’s block, and Gus, a literary fiction author. Both facing personal challenges, they swap genres for the summer in a friendly bet to cure their creative slumps. As they spend time together researching and writing, their relationship deepens, blurring the lines between fiction and reality. The novel explores grief, love, and personal growth with humor and heart.",
+      "category": "Romance",
+      "coverImage": "https://raw.githubusercontent.com/dahemi02/chapters-images/main/chapters-book-assets/books/beachRead.jpg"
+    },
+    {
+      "id": 4,
+      "title": "The Silent Patient",
+      "author": "Alex Michaelides",
+      "description": "The Silent Patient by Alex Michaelides is a psychological thriller about Alicia Berenson, a famous painter who shoots her husband and then stops speaking entirely. Her silence turns the case into a mystery that grips the public. Theo Faber, a criminal psychotherapist, becomes obsessed with uncovering the truth behind Alicia’s silence and her motives. As he digs deeper into her past, dark secrets unravel, leading to a shocking twist. The novel explores themes of trauma, obsession, and the complexities of the human psyche.",
+      "category": "Mystery",
+      "coverImage": "https://raw.githubusercontent.com/dahemi02/chapters-images/main/chapters-book-assets/books/thesilentpatient.jpg"
+    },
+    {
+      "id": 10,
+      "title": "The Cruel Prince ",
+      "author": "Holly Black",
+      "description": "The Cruel Prince by Holly Black is a dark fantasy novel that follows Jude Duarte, a mortal girl living in the treacherous world of Elfhame after her parents are murdered by a faerie general. Determined to prove herself among the powerful and cruel fae, Jude becomes entangled in palace politics and dangerous schemes. Her main rival is Prince Cardan, the arrogant and unpredictable youngest son of the High King. As betrayal and secrets unfold, Jude must navigate a deadly game of power and ambition to survive—and possibly rule.",
+      "category": "Fantasy",
+      "coverImage": "https://raw.githubusercontent.com/dahemi02/chapters-images/main/chapters-book-assets/books/thecruelprince.jpg"
+    },
+    {
+      "id": 9,
+      "title": "The Da Vinci Code ",
+      "author": "Dan Brown",
+      "description": "The Da Vinci Code by Dan Brown is a fast-paced thriller that follows symbologist Robert Langdon and cryptologist Sophie Neveu as they investigate the murder of a Louvre curator. Their search uncovers hidden codes, secret societies, and religious conspiracies tied to the works of Leonardo da Vinci. As they race across Europe, they unravel clues pointing to a shocking secret protected for centuries. Blending art, history, and suspense, the novel explores themes of faith, truth, and the power of knowledge",
+      "category": "Science Fiction",
+      "coverImage": "https://raw.githubusercontent.com/dahemi02/chapters-images/main/chapters-book-assets/books/thedavincicode.jpg"
+    }
+  ]
+
+}

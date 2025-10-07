@@ -26,8 +26,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,23 +39,25 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
 import com.example.chaptersbookapp.R
-import com.example.chaptersbookapp.ui.data.Book
-import com.example.chaptersbookapp.ui.model.Data
+import com.example.chaptersbookapp.ui.data.local.BookEntity
+import com.example.chaptersbookapp.ui.data.repository.BookRepository
 
 @Composable
 fun FavoritesScreen(
     //List of IDs of favorite books
     favoriteBookIds: List<Int>,
     //Remove favorite
-    onRemoveFavorite: (Int) -> Unit
+    onRemoveFavorite: (Int) -> Unit,
+    repository: BookRepository
 ){
     //Landscape orientation
     val configuration = LocalConfiguration.current
     val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
     //Get only the favorite books
-    val favoriteBooks = Data.books.filter { it.id in favoriteBookIds }
+    val favoriteBooks by repository.getFavoriteBooks().collectAsState(initial = emptyList())
 
     //Scrollable list
     LazyColumn (
@@ -130,7 +132,7 @@ fun FavoritesScreen(
 
 @Composable
 fun FavoriteBookItem(
-    book: Book,
+    book: BookEntity,
     onRemove: () -> Unit
 ) {
     Card (
@@ -148,7 +150,7 @@ fun FavoriteBookItem(
             //Book Cover
             Card(
                 modifier = Modifier
-                    .size(60.dp),
+                    .size(80.dp, 100.dp),
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.secondary.copy(alpha = 0.3f)
                 )
@@ -159,8 +161,8 @@ fun FavoriteBookItem(
                     contentAlignment = Alignment.Center
                 ) {
                     Image(
-                        painter = painterResource(id = book.coverImage),
-                        contentDescription = stringResource(id = book.title),
+                        painter = rememberAsyncImagePainter(book.coverImageUrl),
+                        contentDescription = book.title,
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
                             .fillMaxWidth()
@@ -182,18 +184,18 @@ fun FavoriteBookItem(
             ) {
                 //Book title
                 Text(
-                    text = stringResource(book.title),
+                    text = book.title,
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold
                 )
                 //Author
                 Text(
-                    text = stringResource(R.string.by),
+                    text = "by ${book.author}",
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = stringResource(book.author),
+                    text = book.category,
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold
                 )

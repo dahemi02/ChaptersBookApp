@@ -33,6 +33,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -50,18 +51,24 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import coil.compose.rememberAsyncImagePainter
 import com.example.chaptersbookapp.R
 import com.example.chaptersbookapp.ui.data.Author
+import com.example.chaptersbookapp.ui.data.local.AuthorEntity
+import com.example.chaptersbookapp.ui.data.repository.BookRepository
 import com.example.chaptersbookapp.ui.model.Data
 
 @Composable
 fun AuthorsScreen(
-    navController: NavHostController
+    navController: NavHostController,
+    repository: BookRepository
 ){
 
     //Landscape orientation
     val configuration = LocalConfiguration.current
     val isLandscape = configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
+
+    val authors by repository.getAllAuthors().collectAsState(initial = emptyList())
 
     //Scrollable list
     LazyColumn(
@@ -90,10 +97,10 @@ fun AuthorsScreen(
             SectionHeader(stringResource(R.string.popularAuthors))
         }
 
-        items (Data.authors.filter { it.isPopular }) { author ->
+        items (authors.filter { it.isPopular }) { author ->
             AuthorCard(
                 author = author,
-                onClick = {navController.navigate("author_detail/${author.id}")},
+                onClick = {navController.navigate("author_detail/${author.id}")},  //Navigate to Author Details Screen
                 isLandscape = isLandscape
             )
         }
@@ -112,7 +119,7 @@ fun AuthorsScreen(
         }
 
         //Author Card
-        items (Data.authors) { author ->
+        items (authors) { author ->
             AuthorCard(
                 author = author,
                 onClick = {navController.navigate("author_details/${author.id}")},
@@ -148,7 +155,7 @@ fun AuthorSearchBar(){
 
 @Composable
 fun AuthorCard(
-    author: Author,
+    author: AuthorEntity,
     onClick: () -> Unit,
     isLandscape: Boolean = false
 ) {
@@ -161,6 +168,8 @@ fun AuthorCard(
                 0.98f
             else
                 1f,
+
+        //Animation Behaviour
         animationSpec = spring(
             dampingRatio = Spring.DampingRatioMediumBouncy,
             stiffness = Spring.StiffnessLow
@@ -196,11 +205,11 @@ fun AuthorCard(
                     contentAlignment = Alignment.Center
                 ) {
                     Image(
-                        painter = painterResource(id = author.profileImage),
-                        contentDescription = stringResource(id = author.name),
+                        painter = rememberAsyncImagePainter(author.profileImageUrl),
+                        contentDescription = author.name,
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .fillMaxWidth()
+                            .fillMaxSize()
                             .height(
                                 if (isLandscape)
                                     160.dp
@@ -225,7 +234,7 @@ fun AuthorCard(
 
                 //Author name
                 Text(
-                    text = stringResource(id = author.name),
+                    text = author.name,
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold
                 )
@@ -237,7 +246,7 @@ fun AuthorCard(
 
                 //Author description
                 Text(
-                    text = stringResource(id = author.description),
+                    text = author.description,
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
                     maxLines =

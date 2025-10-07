@@ -1,59 +1,94 @@
 package com.example.chaptersbookapp.ui.screen
 
-import android.accessibilityservice.GestureDescription
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import android.Manifest
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Category
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.example.chaptersbookapp.R
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.rememberMultiplePermissionsState
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import com.example.chaptersbookapp.util.DeviceCapabilitiesManager
 
+// About Screen
 @Composable
-fun AboutScreen(){
+fun AboutScreen() {
+    var showDeviceInfo by remember { mutableStateOf(false) }
 
-    //LAndscape orientation
+    // Detect landscape or portrait
     val configuration = LocalConfiguration.current
     val isLandscape = configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
 
-    //Scrollable list
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        // Tab selector
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        ) {
+            Button(
+                onClick = { showDeviceInfo = false },
+                modifier = Modifier.weight(1f),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = if (!showDeviceInfo)
+                        MaterialTheme.colorScheme.primary
+                    else
+                        MaterialTheme.colorScheme.surfaceVariant
+                )
+            ) {
+                Text("About App")
+            }
+            Spacer(modifier = Modifier.width(8.dp))
+            Button(
+                onClick = { showDeviceInfo = true },
+                modifier = Modifier.weight(1f),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = if (showDeviceInfo)
+                        MaterialTheme.colorScheme.primary
+                    else
+                        MaterialTheme.colorScheme.surfaceVariant
+                )
+            ) {
+                Text("Device Info")
+            }
+        }
+
+        // Content
+        if (showDeviceInfo) {
+            DeviceInfoScreen()
+        } else {
+            AboutAppContent()
+        }
+    }
+}
+
+// About App Content
+
+@Composable
+fun AboutAppContent() {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        //"About Us" Title
+        // "About Us" Title
         item {
             Text(
                 text = stringResource(R.string.about),
@@ -63,20 +98,15 @@ fun AboutScreen(){
             )
         }
 
-        //Features
+        // Features Card
         item {
             Card(
-                modifier = Modifier
-                    .fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.surface
                 )
             ) {
-                Column(
-                    modifier = Modifier
-                        .padding(20.dp)
-                ) {
-                    //Features title
+                Column(modifier = Modifier.padding(20.dp)) {
                     Text(
                         text = stringResource(R.string.features),
                         style = MaterialTheme.typography.titleLarge,
@@ -84,26 +114,20 @@ fun AboutScreen(){
                         color = MaterialTheme.colorScheme.primary
                     )
 
-                    Spacer(
-                        modifier = Modifier
-                            .height(16.dp)
-                    )
+                    Spacer(modifier = Modifier.height(16.dp))
 
-                    //Personal Favorites
                     FeatureItem(
                         icon = Icons.Filled.Favorite,
                         title = stringResource(R.string.personalFavorites),
                         description = stringResource(R.string.personalFavorites_des)
                     )
 
-                    //Author Profile
                     FeatureItem(
                         icon = Icons.Filled.Person,
                         title = stringResource(R.string.authorProfiles),
                         description = stringResource(R.string.authorProfiles_des)
                     )
 
-                    //Genre Category
                     FeatureItem(
                         icon = Icons.Filled.Category,
                         title = stringResource(R.string.genreCategories),
@@ -113,14 +137,15 @@ fun AboutScreen(){
             }
         }
 
-        //Contact Form
+        // Contact Form
         item {
             ContactForm()
         }
     }
 }
 
-//Feature Item
+// Feature Item
+
 @Composable
 fun FeatureItem(
     icon: ImageVector,
@@ -133,7 +158,6 @@ fun FeatureItem(
             .padding(vertical = 8.dp),
         verticalAlignment = Alignment.Top
     ) {
-        //Feature Icon
         Icon(
             icon,
             contentDescription = title,
@@ -141,22 +165,14 @@ fun FeatureItem(
             tint = MaterialTheme.colorScheme.primary
         )
 
-        Spacer(
-            modifier = Modifier
-                .width(16.dp)
-        )
+        Spacer(modifier = Modifier.width(16.dp))
 
-        Column(
-            modifier = Modifier
-                .weight(1f)
-        ) {
-            //Feature Title
+        Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold
             )
-            //Feature description
             Text(
                 text = description,
                 style = MaterialTheme.typography.bodyMedium,
@@ -166,25 +182,20 @@ fun FeatureItem(
     }
 }
 
-//Contact Form
+// ---------------- CONTACT FORM ----------------
+
 @Composable
-fun ContactForm(){
-    var name by remember { mutableStateOf("") }
+fun ContactForm() {
     var email by remember { mutableStateOf("") }
     var message by remember { mutableStateOf("") }
 
     Card(
-        modifier = Modifier
-            .fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
         )
     ) {
-        Column(
-            modifier = Modifier
-                .padding(20.dp)
-        ) {
-            //"Contact Us" Title
+        Column(modifier = Modifier.padding(20.dp)) {
             Text(
                 text = stringResource(R.string.contactUs),
                 style = MaterialTheme.typography.titleLarge,
@@ -192,53 +203,214 @@ fun ContactForm(){
                 color = MaterialTheme.colorScheme.primary
             )
 
-            Spacer(
-                modifier = Modifier
-                    .height(16.dp)
-            )
+            Spacer(modifier = Modifier.height(16.dp))
 
-            //Name Field
             OutlinedTextField(
                 value = email,
-                onValueChange = {email = it},
-                label = {Text(stringResource(R.string.email))},
-                modifier = Modifier
-                    .fillMaxWidth(),
+                onValueChange = { email = it },
+                label = { Text(stringResource(R.string.email)) },
+                modifier = Modifier.fillMaxWidth(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
 
-            Spacer(
-                modifier = Modifier
-                    .height(12.dp)
-            )
+            Spacer(modifier = Modifier.height(12.dp))
 
-            //Message Field
             OutlinedTextField(
                 value = message,
-                onValueChange = {message = it},
-                label = {Text(stringResource(R.string.message))},
+                onValueChange = { message = it },
+                label = { Text(stringResource(R.string.message)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(120.dp)
             )
 
-            Spacer(
-                modifier = Modifier
-                    .height(16.dp)
-            )
+            Spacer(modifier = Modifier.height(16.dp))
 
-            //Submit Button
             Button(
                 onClick = {
-                    //Handle form submission
-                    name = ""
+                    // Handle form submission
                     email = ""
                     message = ""
                 },
-                modifier = Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
             ) {
                 Text(stringResource(R.string.sendMessage))
+            }
+        }
+    }
+}
+
+// ---------------- DEVICE INFO SCREEN ----------------
+
+@OptIn(ExperimentalPermissionsApi::class)
+@Composable
+fun DeviceInfoScreen() {
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+
+    // These would come from your own DeviceCapabilitiesManager class
+    val deviceManager = remember { DeviceCapabilitiesManager(context) }
+
+    var batteryStatus by remember { mutableStateOf("Loading...") }
+    var lightLevel by remember { mutableStateOf("0.00 lux") }
+    var locationData by remember { mutableStateOf("Location unavailable") }
+
+    val locationPermissions = rememberMultiplePermissionsState(
+        permissions = listOf(
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        )
+    )
+
+    DisposableEffect(Unit) {
+        deviceManager.lightSensorManager.start()
+        onDispose {
+            deviceManager.lightSensorManager.stop()
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        while (true) {
+            lightLevel = deviceManager.lightSensorManager.getLightLevelString()
+            batteryStatus = deviceManager.batteryManager.getBatteryStatus()
+
+            if (locationPermissions.allPermissionsGranted) {
+                scope.launch {
+                    val location = deviceManager.locationManager.getCurrentLocation()
+                    locationData = location?.let {
+                        "Lat: %.4f, Lon: %.4f".format(it.latitude, it.longitude)
+                    } ?: "Location unavailable"
+                }
+            }
+
+            delay(1000)
+        }
+    }
+
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        item {
+            Text(
+                text = "Device Information",
+                style = MaterialTheme.typography.headlineLarge,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary
+            )
+        }
+
+        // Location Info
+        item {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surface
+                )
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            Icons.Filled.LocationOn,
+                            contentDescription = "Location",
+                            tint = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.size(32.dp)
+                        )
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Text(
+                            text = "Geolocation",
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    if (locationPermissions.allPermissionsGranted) {
+                        Text(
+                            text = locationData,
+                            style = MaterialTheme.typography.bodyLarge
+                        )
+                    } else {
+                        Button(
+                            onClick = { locationPermissions.launchMultiplePermissionRequest() }
+                        ) {
+                            Text("Grant Location Permission")
+                        }
+                    }
+                }
+            }
+        }
+
+        // Light Sensor
+        item {
+            DeviceInfoCard(
+                title = "Ambient Light Sensor",
+                icon = Icons.Filled.LightMode,
+                items = listOf("Light Level" to lightLevel)
+            )
+        }
+
+        // Battery
+        item {
+            DeviceInfoCard(
+                title = "Battery Status",
+                icon = Icons.Filled.BatteryFull,
+                items = listOf("Status" to batteryStatus)
+            )
+        }
+    }
+}
+
+@Composable
+fun DeviceInfoCard(
+    title: String,
+    icon: ImageVector,
+    items: List<Pair<String, String>>
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        )
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(
+                    icon,
+                    contentDescription = title,
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(32.dp)
+                )
+                Spacer(modifier = Modifier.width(12.dp))
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            items.forEach { (label, value) ->
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = "$label:",
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                    Text(
+                        text = value,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
+                Spacer(modifier = Modifier.height(4.dp))
             }
         }
     }

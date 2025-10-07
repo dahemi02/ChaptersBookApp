@@ -1,0 +1,34 @@
+{
+
+  "authors": [
+    {
+      "id": 1,
+      "name": "Emily Henry",
+      "description": "Emily Henry is an American author well-known for her summer rom-com novels",
+      "profileImage": "https://raw.githubusercontent.com/dahemi02/chapters-images/main/chapters-book-assets/authors/emilyhenry.jpg",
+      "isPopular": "false"
+    },
+    {
+      "id": 3,
+      "name": "Dan Brown",
+      "description": "Dan Brown is an American author best known for his thriller novels",
+      "profileImage": "https://raw.githubusercontent.com/dahemi02/chapters-images/main/chapters-book-assets/authors/danbrown.jpg",
+      "isPopular": "false"
+    },
+    {
+      "id": 4,
+      "name": "Holly Black",
+      "description": "Holly Black is an American writer of fantasy novels",
+      "profileImage": "https://raw.githubusercontent.com/dahemi02/chapters-images/main/chapters-book-assets/authors/hollyblack.jpg",
+      "isPopular": "false"
+    },
+    {
+      "id": 5,
+      "name": "V. E. Schwab",
+      "description": "V. E. Schwab is a bestselling author of fantasy and science fiction",
+      "profileImage": "https://raw.githubusercontent.com/dahemi02/chapters-images/main/chapters-book-assets/authors/veschwab.jpg",
+      "isPopular": "false"
+    }
+  ]
+
+}

@@ -13,17 +13,25 @@
     <string name="createAccount">Create Account</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="placeholder_confirmPass">Re-enter your password</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="enterEmail">Enter your email</string>
     <string name="register_link">Don\'t have an account? Register</string>
     <string name="login_link">Already have an account? Login</string>
 
+    <!--Logout-->
+    <string name="logout">Logout</string>
+    <string name="logout_confirm">Are you sure want to logout?</string>
+    <string name="cancel">Cancel</string>
+
     <!--Home Screen-->
     <string name="home">Home</string>
     <string name="recommended">Recommended</string>
     <string name="seeMore">See More</string>
     <string name="by">By</string>
+    <string name="network_status">Offline Mode</string>
 
     <!--Book Details Screen-->
     <string name="goBack">Go Back</string>
@@ -124,5 +132,8 @@
     <string name="historicalFiction">Historical Fiction</string>
     <string name="fantasy">Fantasy</string>
     <string name="scienceFiction">Science Fiction</string>
+
+    <!--Error Message-->
+    <string name="loginError">Please Fill in All Fields</string>
 
 </resources>

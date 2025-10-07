@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "181473945839",
+    "project_id": "chaptersbookapp",
+    "storage_bucket": "chaptersbookapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181473945839:android:888866262874b82fdd131a",
+        "android_client_info": {
+          "package_name": "com.example.chaptersbookapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBo10o22AvIvh3624BnDrtgoTmwxwd_fM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
